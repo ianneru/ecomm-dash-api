@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Pedidos.API.Infrastructure.Repositories;
 using Pedidos.API.Model;
-using Pedidos.API.ViewModel;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -32,7 +31,7 @@ namespace Pedidos.API.Controllers
         /// </returns>
         /// <response code="401">Não autorizado</response> 
         [HttpGet("{pesquisa}")]
-        [ProducesResponseType(typeof(PaginatedItemsViewModel<Pedido>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Pedido>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
         {
             var produtos = await _repository.GetPedidos();
