@@ -15,11 +15,6 @@ namespace Pedidos.API.Infrastructure.EntityConfigurations
 
             builder.Property(cb => cb.DataCriacao)
                 .IsRequired();
-
-            builder.HasMany(cb => cb.Produtos)
-                .WithOne()
-                .HasForeignKey("Id");
-              
         }
     }
 }

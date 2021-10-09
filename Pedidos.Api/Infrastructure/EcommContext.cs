@@ -12,11 +12,21 @@ namespace Pedidos.API.Infrastructure
         }
 
         public DbSet<Pedido> Pedidos { get; set; }
-
+        public DbSet<Equipe> Equipes { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Encomenda> Encomendas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new ProdutoEntityTypeConfiguration());
+            
+            builder.ApplyConfiguration(new EquipeEntityTypeConfiguration());
+            
+            builder.ApplyConfiguration(new PedidoProdutoEntityTypeConfiguration());
+            
             builder.ApplyConfiguration(new PedidoEntityTypeConfiguration());
+
+            builder.ApplyConfiguration(new EncomendaEntityTypeConfiguration());
         }
     }
 
@@ -26,7 +36,7 @@ namespace Pedidos.API.Infrastructure
         public EcommContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<EcommContext>()
-                .UseSqlite("Data Source=PedidosDB.db;");
+                .UseSqlite("Data Source=Ecommerce.db;");
 
             return new EcommContext(optionsBuilder.Options);
         }

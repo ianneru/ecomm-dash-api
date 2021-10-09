@@ -1,21 +1,34 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Pedidos.API.Infrastructure;
 using Pedidos.API.Infrastructure.Repositories;
+using Serilog;
+using System.Text;
 
-namespace Pedidos
+namespace Pedidos.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        [System.Obsolete]
+        public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
             Configuration = configuration;
+
+            var configurationByFile = new ConfigurationBuilder()
+                  .SetBasePath(environment.ContentRootPath)
+                  .AddJsonFile("appsettings.json")
+                  .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configurationByFile)
+                .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
@@ -51,6 +64,17 @@ namespace Pedidos
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pedidos API", Version = "v1" });
             });
+
+            services.ConfigureSwaggerGen(options =>
+            {
+                // UseFullTypeNameInSchemaIds replacement for .NET Core
+                options.CustomSchemaIds(x => x.FullName);
+            });
+
+            services.AddDbContext<EcommContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +88,8 @@ namespace Pedidos
             }
 
             app.UseHttpsRedirection();
+
+            SQLitePCL.Batteries_V2.Init();
 
             app.UseCors(x => x
                 .AllowAnyOrigin()

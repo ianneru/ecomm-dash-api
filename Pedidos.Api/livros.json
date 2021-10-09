@@ -1,0 +1,92 @@
+[
+  {
+    "Codigo": "001",
+    "Nome": "Lógica de Programação: Crie seus primeiros programas usando Javascript e HTML",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 49.90
+  },
+  {
+    "Codigo": "002",
+    "Nome": "Introdução à Computação: Da Lógica aos jogos com Ruby",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 39.90
+  },
+  {
+    "Codigo": "003",
+    "Nome": "Scratch: Um jeito divertido de aprender programação",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 29.90
+  },
+  {
+    "Codigo": "004",
+    "Nome": "Introdução à programação em C: Os primeiros passos de um desenvolvedor",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 19.90
+  },
+  {
+    "Codigo": "005",
+    "Nome": "App Inventor: Seus primeiros aplicativos Android",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 9.90
+  },
+  {
+    "Codigo": "006",
+    "Nome": "Construct 2: Crie o seu primeiro jogo multiplataforma",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 1.90
+  },
+  {
+    "Codigo": "007",
+    "Nome": "Aplicações Java para a web com JSF e JPA",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 18.90
+  },
+  {
+    "Codigo": "008",
+    "Nome": "Java SE 8 Programmer I: O guia para sua certificação Oracle Certified Associate",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 11.90
+  },
+  {
+    "Codigo": "009",
+    "Nome": "SOA aplicado: Integrando com web services e além",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 5.90
+  },
+  {
+    "Codigo": "010",
+    "Nome": "Design Patterns com Java: Projeto orientado a objetos guiado por padrões",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 14.90
+  },
+  {
+    "Codigo": "011",
+    "Nome": "Spring MVC: Domine o principal framework web Java",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 10.90
+  },
+  {
+    "Codigo": "012",
+    "Nome": "Vire o jogo com Spring Framework",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 83.90
+  },
+  {
+    "Codigo": "013",
+    "Nome": "Orientação a Objetos e SOLID para Ninjas: Projetando classes flexíveis",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 1.00
+  },
+  {
+    "Codigo": "014",
+    "Nome": "Test-Driven Development: Teste e Design no Mundo Real",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 2.00
+  },
+  {
+    "Codigo": "015",
+    "Nome": "Introdução à Arquitetura e Design de Software: Uma visão sobre a plataforma Java",
+    "Descricao": "Livros para aprendizado básico ",
+    "Preco": 33.90
+  }
+]
