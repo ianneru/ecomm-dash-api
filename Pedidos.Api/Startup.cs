@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Pedidos.API.Infrastructure.Repositories;
 
 namespace Pedidos
 {
@@ -23,6 +24,8 @@ namespace Pedidos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddTransient<IPedidosRepository, PedidosRepository>();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
 

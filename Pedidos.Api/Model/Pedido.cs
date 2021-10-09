@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Pedidos.API.Model
 {
-    public class Pedido
+    public class Pedido : BaseModel
     {
-        public Guid Id { get; set; }
-
         [Required]
         public DateTime DataCriacao { get; set; }
 
@@ -29,6 +28,11 @@ namespace Pedidos.API.Model
             }
 
             return results;
+        }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }
