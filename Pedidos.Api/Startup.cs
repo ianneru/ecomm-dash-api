@@ -117,6 +117,7 @@ namespace Pedidos.API
             });
 
             services.AddScoped<IPedidosRepository, PedidosRepository>();
+            services.AddScoped<IPedidoService, PedidoService>();
             services.AddScoped<IViewerService, ViewerService>();
             services.AddScoped<IViewerRepository, ViewerRepository>();
         }

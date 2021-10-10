@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Pedidos.API.Model;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Pedidos.API.Model;
+using System.Linq;
 
 namespace Pedidos.API.Infrastructure.Repositories
 {
@@ -11,6 +9,6 @@ namespace Pedidos.API.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Pedido>> GetPedidos() =>  await dbSet.ToListAsync();
+        public IQueryable<Pedido> Get() =>  dbSet.AsQueryable();
     }
 }

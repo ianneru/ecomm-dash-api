@@ -223,6 +223,46 @@ namespace Pedidos.API
                                             "Rua A-51 233,Parque Sagrada Família,Rondonópolis - MT",
                                             ultimosProdutos));
 
+                await pedidosDbSet.AddAsync(new Pedido("004",
+                                            quatorzeDiasDepois,
+                                            "Rua Tocantins 123,Rio Marinho,Cariacica - ES",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("005",
+                                            quatorzeDiasDepois,
+                                            "Rua Iara 1234,Paraíso,Belo Horizonte - MG",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("006",
+                                            quatorzeDiasDepois,
+                                            "Rua Trinta e Seis 333,Viviane,Redenção - PA",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("007",
+                                            quatorzeDiasDepois,
+                                            "Rua Imbituva 11,Cajuru,Curitiba - PR",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("008",
+                                            quatorzeDiasDepois,
+                                            "Rua Pirapitinga 123,Bangu,Rio de Janeiro - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("009",
+                                            quatorzeDiasDepois,
+                                            "Rua Travessa Florisbela 345,Barreto,Niterói - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("010",
+                                            quatorzeDiasDepois,
+                                            "Rua Expedicionário Felício Tomazini 312,Maria Paula,São Gonçalo - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("011",
+                                            quatorzeDiasDepois,
+                                            "Rua Estrada Diogo Moreira 123,Vila Santa Teresa,Belford Roxo - RJ",
+                                            ultimosProdutos));
+
                 await context.SaveChangesAsync();
             }
         }
