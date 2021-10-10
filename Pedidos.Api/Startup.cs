@@ -9,7 +9,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Pedidos.API.Infrastructure;
 using Pedidos.API.Infrastructure.Repositories;
+using Pedidos.API.Services;
 using Serilog;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace Pedidos.API
@@ -33,6 +37,9 @@ namespace Pedidos.API
 
         public IConfiguration Configuration { get; }
 
+        public const string AuthenticationSecret = "AuthenticationSecret";
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -40,29 +47,62 @@ namespace Pedidos.API
 
             services.AddControllers();
 
-            var key = Encoding.ASCII.GetBytes(Settings.Secret);
+            var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>(AuthenticationSecret));
 
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
+                .AddJwtBearer(x =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
+            services.AddScoped<ITokenService, TokenService>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pedidos API", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    BearerFormat = "JWT",
+                    Scheme = "bearer",
+                    Description =
+                        "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                if (File.Exists(xmlPath))
+                    c.IncludeXmlComments(xmlPath);
             });
 
             services.ConfigureSwaggerGen(options =>
@@ -76,7 +116,9 @@ namespace Pedidos.API
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddTransient<IPedidosRepository, PedidosRepository>();
+            services.AddScoped<IPedidosRepository, PedidosRepository>();
+            services.AddScoped<IViewerService, ViewerService>();
+            services.AddScoped<IViewerRepository, ViewerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,9 +140,8 @@ namespace Pedidos.API
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            app.UseRouting();
-
             app.UseAuthentication();
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -15,6 +15,7 @@ namespace Pedidos.API.Infrastructure
         public DbSet<Equipe> Equipes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Encomenda> Encomendas { get; set; }
+        public DbSet<Viewer> Viewers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -27,6 +28,8 @@ namespace Pedidos.API.Infrastructure
             builder.ApplyConfiguration(new PedidoEntityTypeConfiguration());
 
             builder.ApplyConfiguration(new EncomendaEntityTypeConfiguration());
+
+            builder.ApplyConfiguration(new ViewerEntityTypeConfiguration());
         }
     }
 

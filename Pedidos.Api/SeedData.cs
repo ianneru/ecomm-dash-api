@@ -21,6 +21,8 @@ namespace Pedidos.API
 
                 await CreateTables(context);
 
+                await SaveViewers(context);
+
                 await SaveEquipes(context);
 
                 await SaveProdutos(context);
@@ -31,8 +33,12 @@ namespace Pedidos.API
             }
         }
 
+
+
         private static async Task CreateTables(EcommContext context)
         {
+            await CreateTableViewers(context);
+
             await CreateTableProdutos(context);
 
             await CreateTableEquipes(context);
@@ -42,6 +48,20 @@ namespace Pedidos.API
             await CreateTablePedidosProdutos(context);
 
             await CreateTableEncomendas(context);
+        }
+
+        private static async Task CreateTableViewers(EcommContext context)
+        {
+            var sql
+                = @"CREATE TABLE IF NOT EXISTS 
+                        'Viewers' (
+                            'Id'    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            'Username'  TEXT NOT NULL,
+                            'Password'  TEXT NOT NULL,
+                            'Role'      TEXT NOT NULL
+                        );";
+
+            await ExecuteSqlCommandAsync(context, sql);
         }
 
         private static async Task CreateTablePedidosProdutos(EcommContext context)
@@ -120,6 +140,25 @@ namespace Pedidos.API
             var result = await context.Database.ExecuteSqlRawAsync(createTableSql);
         }
 
+        private static async Task SaveViewers(EcommContext context)
+        {
+            var vwDbSet = context.Set<Viewer>();
+
+            if (!vwDbSet.Any())
+            {
+
+                await vwDbSet.AddAsync(
+                    new Viewer
+                    {
+                        Username = "Ecommerce",
+                        Password = "Ecommerce",
+                        Role = "Admin"
+                    });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
         private static async Task SaveProdutos(EcommContext context)
         {
             var produtoDbSet = context.Set<Produto>();
@@ -141,10 +180,10 @@ namespace Pedidos.API
         {
             var equipeDbSet = context.Set<Equipe>();
 
-            if(!equipeDbSet.Any())
+            if (!equipeDbSet.Any())
             {
-                await equipeDbSet.AddAsync(new Equipe("Vendas","Equipe de vendas especializados na venda de livros"));
-                
+                await equipeDbSet.AddAsync(new Equipe("Vendas", "Equipe de vendas especializados na venda de livros"));
+
                 await equipeDbSet.AddAsync(new Equipe("Compras", "Equipe de compras especializados na venda de compras"));
 
                 await equipeDbSet.AddAsync(
@@ -196,7 +235,7 @@ namespace Pedidos.API
 
             if (!encomendasDbSet.Any() && pedidoDbSet.Any())
             {
-                var pedido001 = pedidoDbSet.First(o=>o.NumeroIdentificacao == "001");
+                var pedido001 = pedidoDbSet.First(o => o.NumeroIdentificacao == "001");
                 var pedido002 = pedidoDbSet.First(o => o.NumeroIdentificacao == "002");
                 var pedido003 = pedidoDbSet.First(o => o.NumeroIdentificacao == "003");
 
@@ -204,7 +243,7 @@ namespace Pedidos.API
                 var equipeCompras = equipeDbSet.First(o => o.Nome == "Compras");
                 var equipeTI = equipeDbSet.First(o => o.Nome == "TI");
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,pedido001.Id, "MSZ-8222"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido001.Id, "MSZ-8222"));
 
                 await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido002.Id, "JEL-5881"));
 

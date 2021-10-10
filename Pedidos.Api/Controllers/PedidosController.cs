@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pedidos.API.Infrastructure.Repositories;
 using Pedidos.API.Model;
@@ -23,14 +24,8 @@ namespace Pedidos.API.Controllers
             _repository = repository;
         }
 
-        /// <summary>
-        /// Obtém a lista completa de pedidos.
-        /// </summary>
-        /// <returns>
-        /// A lista completa de produtos do catálogo
-        /// </returns>
-        /// <response code="401">Não autorizado</response> 
         [HttpGet()]
+        [Authorize]
         [ProducesResponseType(typeof(IEnumerable<Pedido>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
         {
