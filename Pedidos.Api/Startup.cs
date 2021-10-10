@@ -36,9 +36,9 @@ namespace Pedidos.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
-            services.AddTransient<IPedidosRepository, PedidosRepository>();
+            services.AddControllers();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
 
@@ -75,6 +75,8 @@ namespace Pedidos.API
             {
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddTransient<IPedidosRepository, PedidosRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ namespace Pedidos.API.Infrastructure.Repositories
 {
     public class PedidosRepository : BaseRepository<Pedido>, IPedidosRepository
     {
-        public PedidosRepository(DbContext contexto) : base(contexto)
+        public PedidosRepository(EcommContext contexto) : base(contexto)
         {
         }
 

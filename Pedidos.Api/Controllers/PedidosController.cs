@@ -30,7 +30,7 @@ namespace Pedidos.API.Controllers
         /// A lista completa de produtos do catálogo
         /// </returns>
         /// <response code="401">Não autorizado</response> 
-        [HttpGet("{pesquisa}")]
+        [HttpGet()]
         [ProducesResponseType(typeof(IEnumerable<Pedido>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
         {

@@ -52,13 +52,13 @@ namespace Pedidos.API.Model
         [Required]
         public string Endereco { get; set; }
 
-        public ICollection<PedidoProduto> PedidosProdutos { get; set; } = new List<PedidoProduto>();
+        public ICollection<PedidoProduto> PedidosProdutos { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
 
-            if (!PedidosProdutos.Any())
+            if (!(PedidosProdutos ?? new List<PedidoProduto>()).Any())
             {
                 results.Add(new ValidationResult("Número inválido de produtos", new[] { "Quantidade" }));
             }

@@ -5,10 +5,10 @@ namespace Pedidos.API.Infrastructure.Repositories
 {
     public abstract class BaseRepository<T> where T : BaseModel
     {
-        protected readonly DbContext contexto;
+        protected readonly EcommContext contexto;
         protected readonly DbSet<T> dbSet;
 
-        public BaseRepository(DbContext contexto)
+        public BaseRepository(EcommContext contexto)
         {
             this.contexto = contexto;
 
