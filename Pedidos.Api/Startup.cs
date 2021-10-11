@@ -54,18 +54,18 @@ namespace Pedidos.API
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(x =>
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    x.RequireHttpsMetadata = false;
-                    x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
-                });
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             services.AddScoped<ITokenService, TokenService>();
 
@@ -116,8 +116,12 @@ namespace Pedidos.API
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddScoped<IEncomendasRepository, EncomendasRepository>();
+            services.AddScoped<IPedidoProdutosRepository, PedidoProdutosRepository>();
+            services.AddScoped<IProdutosRepository, ProdutosRepository>();
+            services.AddScoped<IEquipesRepository, EquipesRepository>();
             services.AddScoped<IPedidosRepository, PedidosRepository>();
-            services.AddScoped<IPedidoService, PedidoService>();
+            services.AddScoped<IEncomendaService, EncomendasService>();
             services.AddScoped<IViewerService, ViewerService>();
             services.AddScoped<IViewerRepository, ViewerRepository>();
         }

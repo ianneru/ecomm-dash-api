@@ -278,6 +278,14 @@ namespace Pedidos.API
                 var pedido001 = pedidoDbSet.First(o => o.NumeroIdentificacao == "001");
                 var pedido002 = pedidoDbSet.First(o => o.NumeroIdentificacao == "002");
                 var pedido003 = pedidoDbSet.First(o => o.NumeroIdentificacao == "003");
+                var pedido004 = pedidoDbSet.First(o => o.NumeroIdentificacao == "004");
+                var pedido005 = pedidoDbSet.First(o => o.NumeroIdentificacao == "005");
+                var pedido006 = pedidoDbSet.First(o => o.NumeroIdentificacao == "006");
+                var pedido007 = pedidoDbSet.First(o => o.NumeroIdentificacao == "007");
+                var pedido008 = pedidoDbSet.First(o => o.NumeroIdentificacao == "008");
+                var pedido009 = pedidoDbSet.First(o => o.NumeroIdentificacao == "009");
+                var pedido010 = pedidoDbSet.First(o => o.NumeroIdentificacao == "010");
+                var pedido011 = pedidoDbSet.First(o => o.NumeroIdentificacao == "011");
 
                 var equipeVendas = equipeDbSet.First(o => o.Nome == "Vendas");
                 var equipeCompras = equipeDbSet.First(o => o.Nome == "Compras");
@@ -288,6 +296,22 @@ namespace Pedidos.API
                 await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido002.Id, "JEL-5881"));
 
                 await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, pedido003.Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido004.Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido005.Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, pedido006.Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido007.Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido008.Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, pedido009.Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido010.Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido011.Id, "JEL-5881"));
 
                 await context.SaveChangesAsync();
             }
