@@ -263,6 +263,101 @@ namespace Pedidos.API
                                             "Rua Estrada Diogo Moreira 123,Vila Santa Teresa,Belford Roxo - RJ",
                                             ultimosProdutos));
 
+                await pedidosDbSet.AddAsync(new Pedido("012",
+                                            doisDiasDepois,
+                                            "Rua Luiz Fernando Veríssimo 2 ,Vila Acre,Rio Branco - AC",
+                                            cincoPrimeirosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("013",
+                                            cincoDiasDepois,
+                                            "Rua Elizabeth Áurea de Souza 11 ,Nova Lima,Campo Grande - MS",
+                                            entre5e10Produtos));
+
+                await pedidosDbSet.AddAsync(new Pedido("014",
+                                            quatorzeDiasDepois,
+                                            "Rua Guia Lopes 30,Jardim São João 2ª Seção,Ponta Porã - MS",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("015",
+                                            quatorzeDiasDepois,
+                                            "Rua Tocantins 123,Rio Marinho,Cariacica - MS",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("016",
+                                            quatorzeDiasDepois,
+                                            "Rua Lina Bardi 11,Residencial Vida Nova III,Campo Grande - MS",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("017",
+                                            quatorzeDiasDepois,
+                                            "Rua Trinta e Seis 333,Viviane,Redenção - PA",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("018",
+                                            quatorzeDiasDepois,
+                                            "Rua Imbituva 11,Cajuru,Curitiba - PR",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("019",
+                                            quatorzeDiasDepois,
+                                            "Rua Pirapitinga 123,Bangu,Rio de Janeiro - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("020",
+                                            quatorzeDiasDepois,
+                                            "Rua Travessa Florisbela 345,Barreto,Niterói - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("021",
+                                         doisDiasDepois,
+                                         "Beco Barracão 2 ,Aeroporto Velho,Rio Branco - AC",
+                                         cincoPrimeirosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("022",
+                                            cincoDiasDepois,
+                                            "Quadra Quadra 32 ,Jardim América III,Goiânia - GO",
+                                            entre5e10Produtos));
+
+                await pedidosDbSet.AddAsync(new Pedido("023",
+                                            quatorzeDiasDepois,
+                                            "Rua A-51 233,Parque Sagrada Família,Rondonópolis - MT",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("024",
+                                            quatorzeDiasDepois,
+                                            "Rua Tocantins 123,Rio Marinho,Cariacica - ES",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("025",
+                                            quatorzeDiasDepois,
+                                            "Rua Iara 1234,Paraíso,Belo Horizonte - MG",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("026",
+                                            quatorzeDiasDepois,
+                                            "Rua Trinta e Seis 333,Viviane,Redenção - PA",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("027",
+                                            quatorzeDiasDepois,
+                                            "Rua Imbituva 11,Cajuru,Curitiba - PR",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("028",
+                                            quatorzeDiasDepois,
+                                            "Rua Pirapitinga 123,Bangu,Rio de Janeiro - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("029",
+                                            quatorzeDiasDepois,
+                                            "Rua Travessa Florisbela 345,Barreto,Niterói - RJ",
+                                            ultimosProdutos));
+
+                await pedidosDbSet.AddAsync(new Pedido("030",
+                                            quatorzeDiasDepois,
+                                            "Rua Expedicionário Felício Tomazini 312,Maria Paula,São Gonçalo - RJ",
+                                            ultimosProdutos));
+
                 await context.SaveChangesAsync();
             }
         }
@@ -275,43 +370,99 @@ namespace Pedidos.API
 
             if (!encomendasDbSet.Any() && pedidoDbSet.Any())
             {
-                var pedido001 = pedidoDbSet.First(o => o.NumeroIdentificacao == "001");
-                var pedido002 = pedidoDbSet.First(o => o.NumeroIdentificacao == "002");
-                var pedido003 = pedidoDbSet.First(o => o.NumeroIdentificacao == "003");
-                var pedido004 = pedidoDbSet.First(o => o.NumeroIdentificacao == "004");
-                var pedido005 = pedidoDbSet.First(o => o.NumeroIdentificacao == "005");
-                var pedido006 = pedidoDbSet.First(o => o.NumeroIdentificacao == "006");
-                var pedido007 = pedidoDbSet.First(o => o.NumeroIdentificacao == "007");
-                var pedido008 = pedidoDbSet.First(o => o.NumeroIdentificacao == "008");
-                var pedido009 = pedidoDbSet.First(o => o.NumeroIdentificacao == "009");
-                var pedido010 = pedidoDbSet.First(o => o.NumeroIdentificacao == "010");
-                var pedido011 = pedidoDbSet.First(o => o.NumeroIdentificacao == "011");
-
                 var equipeVendas = equipeDbSet.First(o => o.Nome == "Vendas");
                 var equipeCompras = equipeDbSet.First(o => o.Nome == "Compras");
                 var equipeTI = equipeDbSet.First(o => o.Nome == "TI");
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido001.Id, "MSZ-8222"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "001").Id, "MSZ-8222"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido002.Id, "JEL-5881"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, 
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "002").Id, "JEL-5881"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, pedido003.Id, "KLZ-3034"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "003").Id, "KLZ-3034"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido004.Id, "MSZ-8222"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "004").Id, "MSZ-8222"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido005.Id, "JEL-5881"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "005").Id, "JEL-5881"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, pedido006.Id, "KLZ-3034"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "006").Id, "KLZ-3034"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido007.Id, "MSZ-8222"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "007").Id, "MSZ-8222"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido008.Id, "JEL-5881"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "008").Id, "JEL-5881"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, pedido009.Id, "KLZ-3034"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id, 
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "009").Id, "KLZ-3034"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id, pedido010.Id, "MSZ-8222"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "010").Id, "MSZ-8222"));
 
-                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id, pedido011.Id, "JEL-5881"));
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "011").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "012").Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "013").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "014").Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "015").Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "016").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "017").Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "018").Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "019").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "020").Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                   pedidoDbSet.First(o => o.NumeroIdentificacao == "021").Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "022").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "023").Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "024").Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "025").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "026").Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "027").Id, "MSZ-8222"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeCompras.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "028").Id, "JEL-5881"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeTI.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "029").Id, "KLZ-3034"));
+
+                await encomendasDbSet.AddAsync(new Encomenda(equipeVendas.Id,
+                    pedidoDbSet.First(o => o.NumeroIdentificacao == "030").Id, "MSZ-8222"));
 
                 await context.SaveChangesAsync();
             }
