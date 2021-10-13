@@ -6,7 +6,18 @@ Api em rest feito em .NET 5 contendo dois endpoints( Auth e Encomendas).
 
 Realizar o git clone do repositório. 
 
-### 📋 Pré-requisitos
+## Pré-requisitos funcionais
+
+A cada nova encomenda écriado um pedido no banco de dados, cada pedido tem o seu número de
+identificação, data de criação, data da entrega realizada e endereço. Cada pedido
+pode conter vários produtos, e de cada um é guardado o nome, descrição e valor.
+Cada encomenda é destinada a uma equipe e desta se sabe o nome, descrição e
+placa do veículo utilizado.
+O único endpoint irá retornar todos os pedidos ordenados por data de criação
+e paginado (dados de paginação devem vir como parâmetro passado pelo
+front-end).
+
+### 📋 Pré-requisitos Técnicos
 
 Instalação do .NET 5. (https://dotnet.microsoft.com/download/dotnet/5.0)
 
@@ -19,6 +30,8 @@ Abrir o arquivo : `EcommDashApi.sln`.
 Como há apenas um único projeto, o  sln já está configurado para rodá-lo.
 
 Debugar com IISExpress.
+
+Será gerado um DB de SqlLite com carga e tabelas de sistema de vendas simples 
 
 Ao rodar, o swagger já mostrará os dois endpoints.
 
