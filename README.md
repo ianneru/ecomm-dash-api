@@ -43,7 +43,7 @@ Realizar o post no endpoint de Authentication com o usuário : Ecommerce e senha
 
 E após será gerado um token de acesso.
 
-Com o token gerado é possível inputar na head de requisição `Authorization: Bearer {token}` no endpoint de Encomendas.
+Com o token gerado é possível inputar na header de requisição `Authorization: Bearer {token}` no endpoint de Encomendas.
 
 
 
