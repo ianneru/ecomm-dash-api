@@ -1,6 +1,6 @@
 # Api de sistema de vendas e entregas 
 
-Api em rest feito em .NET 5 contendo dois endpoints( Auth e Pedidos).
+Api em rest feito em .NET 5 contendo dois endpoints( Auth e Encomendas).
 
 ## 🚀 Começando
 
